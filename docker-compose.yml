@@ -1,5 +1,7 @@
 version: "3"
 
+name: payload
+
 services:
   postgres:
     image: postgres:15
@@ -13,7 +15,10 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     logging:
-      driver: none
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
     env_file:
       - .env
 
